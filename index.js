@@ -15,3 +15,22 @@ db.sequelize.sync()
     app.listen(3000, () => {console.log('server started')});
 })
 .catch((err)=> {console.log(err)})
+
+app.post("/komik", async (req, res) => {
+    try{
+        const komik = await db.komik.create(data);
+        res.send(komik);
+    } catch(err) {
+        res.send(err);
+    }
+})
+
+app.get("/komik", async (req,res) => {
+    try{
+        const komik = await db.komik.findAll();
+        res.send(komik);
+    }
+    catch(err){
+        res.send(err);
+    }
+})
